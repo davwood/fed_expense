@@ -1,0 +1,25 @@
+{
+ "name": "flare",
+ "children": [
+  {
+   "name": "analytics",
+   "children": [
+    {
+     "name": "cluster",
+     "children": [
+      {"party": "AgglomerativeCluster", "outside": "AgglomerativeCluster", "total": 3938},
+      {"party": "CommunityStructure", "outside": "AgglomerativeCluster", "total": 3812},
+      {"party": "MergeEdge", "outside": "AgglomerativeCluster", "total": 743}
+     ]
+    },
+    {
+     "name": "graph",
+     "children": [
+      {"party": "BetweennessCentrality", "outside": "AgglomerativeCluster", "total": 3534},
+      {"party": "LinkDistance", "outside": "AgglomerativeCluster", "total": 5731}
+     ]
+    }
+   ]
+  }
+ ]
+}

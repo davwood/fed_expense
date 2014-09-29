@@ -1,0 +1,55 @@
+body {
+  margin: auto;
+  width: 960px;
+  font: 12px sans-serif;
+}
+
+text#green {
+	fill: white;
+	font-size: 14px;
+}
+
+text#red {
+	fill: white;
+	font-size: 14px;
+}
+.axis path,
+.axis line {
+  shape-rendering: crispEdges;
+}
+
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: url(#col-gradient);
+  stroke-width: 2px;
+}
+
+.axis .domain
+{
+opacity: 0;
+}
+
+
+.tick {
+	fill: white;
+}
+
+.tick line {
+	stroke: white;
+}
+
+#weeks {
+	font-size: 14px; 
+	fill: white;
+
+}
+
+rect {
+	opacity: 0.5;
+	stroke: grey;
+}
