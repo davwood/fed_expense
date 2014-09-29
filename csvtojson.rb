@@ -21,11 +21,12 @@ json = CSV.open(file_name, headers: true).map do |row|
   }
 end
 
+json_update = json.sort_by{|s| s[:party] }.group_by { |s| s[:party] }.map {|k,v| {"name" => k, "children" => v }}
 
 
 begin
   file = File.open("#{file_name}.json", "w")
-  file.write(json.sort_by{|s| s[:party] }.group_by { |s| s[:party] }.to_json) 
+  file.write(json_update.to_json)
 rescue IOError => e
   #some error occur, dir not writable etc.
 ensure
@@ -39,4 +40,4 @@ end
 # jsonData = {}
 
 
-# {|f| w.write(csv) } 
+# {|f| w.write(csv) }
