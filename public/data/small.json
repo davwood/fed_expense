@@ -2,21 +2,46 @@
  "name": "flare",
  "children": [
   {
-   "name": "analytics",
-   "children": [
+  "name": "analytics",
+  "children": [
     {
-     "name": "cluster",
+     "name": "ALP",
      "children": [
-      {"party": "AgglomerativeCluster", "outside": "AgglomerativeCluster", "total": 3938},
-      {"party": "CommunityStructure", "outside": "AgglomerativeCluster", "total": 3812},
-      {"party": "MergeEdge", "outside": "AgglomerativeCluster", "total": 743}
+      {
+        "politician": "Andrew\tLeigh ",
+        "party": "ALP",
+        "total": "799585.39"
+      },
+      {
+        "politician": "Annette\tEllis ",
+        "party": "ALP",
+        "total": "24830.56"
+      },
+      {
+        "politician": "Bob\tMcMullan ",
+        "party": "ALP",
+        "total": "66019.54"
+      }
      ]
     },
     {
-     "name": "graph",
+     "name": "Liberal",
      "children": [
-      {"party": "BetweennessCentrality", "outside": "AgglomerativeCluster", "total": 3534},
-      {"party": "LinkDistance", "outside": "AgglomerativeCluster", "total": 5731}
+      {
+        "politician": "Andrew\tLeigh ",
+        "party": "ALP",
+        "total": "799585.39"
+      },
+      {
+        "politician": "Annette\tEllis ",
+        "party": "ALP",
+        "total": "24830.56"
+      },
+      {
+        "politician": "Bob\tMcMullan ",
+        "party": "ALP",
+        "total": "66019.54"
+      }
      ]
     }
    ]
