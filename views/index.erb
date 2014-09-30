@@ -17,8 +17,8 @@ form {
 
 </style>
 <form>
-  <label><input type="radio" name="mode" value="total"> Total</label>
-  <label><input type="radio" name="mode" value="count" checked> Count</label>
+  <label><input type="radio" name="mode" value="total" checked> Total</label>
+  <label><input type="radio" name="mode" value="count"> Count</label>
 </form>
 <script>
 
@@ -36,7 +36,7 @@ var svg = d3.select("body").append("svg")
 var partition = d3.layout.partition()
     .sort(null)
     .size([2 * Math.PI, radius * radius])
-    .value(function(d) { return 1; });
+    .value(function(d) { return d.total; });
 
 var arc = d3.svg.arc()
     .startAngle(function(d) { return d.x; })
@@ -56,9 +56,9 @@ d3.json("/data/expenses.json", function(error, root) {
       .each(stash);
 
   d3.selectAll("input").on("change", function change() {
-    var value = this.value === "count"
-        ? function() { return 1; }
-        : function(d) { return d.total; };
+    var value = this.value === "total"
+        ? function(d) { return d.total; }
+        : function(d) { return 1; };
 
     path
         .data(partition.value(value).nodes)
