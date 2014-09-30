@@ -65,7 +65,7 @@ d3.json("/data/expenses.json", function(error, root) {
     .attr("x", function(d) { return y(d.y); })
     .attr("dx", "6") // margin
     .attr("dy", ".35em") // vertical-align
-    .text(function(d) { return d.name; });
+    .text(function(d) { return d.name ? d.name : d.politician; });
 
   function click(d) {
     // fade out all text elements
