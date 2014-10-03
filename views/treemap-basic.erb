@@ -26,8 +26,8 @@ form {
 
 </style>
 <form>
-  <label><input type="radio" name="mode" value="total" checked> Total</label>
-  <label><input type="radio" name="mode" value="count"> Count</label>
+  <label><input type="radio" name="mode" value="House" checked> House</label>
+  <label><input type="radio" name="mode" value="Senate"> Senate</label>
 </form>
 
 <!-- <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -37,14 +37,14 @@ form {
 
 var margin = {top: 40, right: 10, bottom: 10, left: 10},
     width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    height = 600 - margin.top - margin.bottom;
 
 var color = d3.scale.category20c();
 
 var treemap = d3.layout.treemap()
     .size([width, height])
     .sticky(true)
-    .value(function(d) { return d.total; });
+    .value(function(d) { return d.house === "MP" ? d.total : 0 });
 
 var div = d3.select("body").append("div")
     .style("position", "relative")
@@ -53,7 +53,7 @@ var div = d3.select("body").append("div")
     .style("left", margin.left + "px")
     .style("top", margin.top + "px");
 
-d3.json("/data/expenses.json", function(error, root) {
+d3.json("/data/2013expenses.json", function(error, root) {
   var node = div.datum(root).selectAll(".node")
       .data(treemap.nodes)
     .enter().append("div")
@@ -63,14 +63,14 @@ d3.json("/data/expenses.json", function(error, root) {
       .text(function(d) { return d.children ? null : d.politician; });
 
   d3.selectAll("input").on("change", function change() {
-    var value = this.value === "count"
-        ? function() { return 1; }
-        : function(d) { return d.total; };
+    var value = this.value === "House"
+        ? function(d) { return d.house === "MP" ? d.total : 0 }
+        : function(d) { return d.house ==="MP" ? 0 : d.total };
 
     node
         .data(treemap.value(value).nodes)
       .transition()
-        .duration(1500)
+        .duration(800)
         .call(position);
   });
 });
