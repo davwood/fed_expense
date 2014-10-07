@@ -17,7 +17,7 @@ form {
 
 .node {
   border: solid 1px white;
-  font: 10px sans-serif;
+  font: 9px sans-serif;
   line-height: 12px;
   overflow: hidden;
   position: absolute;
@@ -37,9 +37,20 @@ form {
 
 var margin = {top: 40, right: 10, bottom: 10, left: 10},
     width = 960 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    height = 700 - margin.top - margin.bottom;
 
-var color = d3.scale.category20c();
+// var color = d3.scale.category20c();
+
+var color = {"ALP":"blue",
+            "CLP":"grey",
+            "DLP":"black",
+            "Greens":"green",
+            "Independent": "orange",
+            "Katter's Australian Party": "yellow",         
+            "LNP":"blue",
+            "LNP / Independent": "blue",
+            "Liberal": "blue"}
+        
 
 var treemap = d3.layout.treemap()
     .size([width, height])
@@ -59,7 +70,7 @@ d3.json("/data/2013expenses.json", function(error, root) {
     .enter().append("div")
       .attr("class", "node")
       .call(position)
-      .style("background", function(d) { return d.children ? color(d.name) : null; })
+      .style("background", function(d) { return d.children ? color[d.name] : null; })
       .text(function(d) { return d.children ? null : d.politician; });
 
   d3.selectAll("input").on("change", function change() {
@@ -81,5 +92,22 @@ function position() {
       .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
       .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
 }
+
+
+  var barchart = d3.select("#barchart").append("svg");
+  var group = barchart.append("g");
+  var data1 = [15, 20, 25];
+  var barheight = 200;
+
+  var bar = group.selectAll("rect")
+            .data(data1)
+            .enter()
+            .append("rect")
+            .attr("x", function(d,i) {
+              return (i * 40);
+            })
+            .attr("y", (barheight))
+            .attr("width", 30)
+            .attr("height", function(d) {return d * -2})
 
 </script>
